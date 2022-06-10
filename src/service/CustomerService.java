@@ -24,15 +24,16 @@ public class CustomerService {
     }
 
     public Customer getCustomer(String customerEmail){
+
         for (Customer customer: CustomerList
              ) {
 
             System.out.println(customer);
 
-            if(CustomerList.contains(customer.getEmail().equals(customerEmail))){
-                System.out.println("--------------");
+            if(customer.getEmail().equals(customerEmail)){
                 System.out.println(customer.getLastName() +","+ customer.getFirstName()+", email:"+ customer.getEmail());
                 System.out.println("--------------");
+                return customer;
                  }else{
                 System.out.println("Customer not found");
                }
