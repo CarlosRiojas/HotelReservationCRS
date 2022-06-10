@@ -13,7 +13,7 @@ public class ReservationService  {
 
 
     Collection<Room> roomList = new HashSet<Room>();
-
+    Map<Customer,Date> reservationList = new LinkedHashMap<>();
 
    public void addRoom(IRoom room){
        boolean quit= false;
@@ -57,12 +57,14 @@ public class ReservationService  {
        }
        return null;
    }
-/*
+
    public Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate){
 
+      reservationList.put(customer,checkInDate);
+    return null;
    }
 
- */
+
 
    public void printAllReservation(){
 
