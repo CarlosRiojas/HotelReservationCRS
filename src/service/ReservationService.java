@@ -10,14 +10,16 @@ import java.util.*;
 public class ReservationService  {
     Room newRoom = new Room();
     CustomerService customerService = new CustomerService();
+    Calendar calendar = Calendar.getInstance();
+
 
     public void setNewRoom(Room newRoom) {
         this.newRoom = newRoom;
     }
 
-
     Collection<Room> roomList = new HashSet<Room>();
     Collection<Reservation> reservationList = new HashSet<>();
+
 
    public void addRoom(IRoom room){
        boolean quit= false;
@@ -57,6 +59,14 @@ public class ReservationService  {
                return room;
            }else{
                System.out.println("Room not found");
+               for (Room allRoom: roomList
+                    ) {
+                   if(allRoom.isFree()) {
+                       System.out.println(allRoom.isFree());
+                   }else{
+                       System.out.println("No accommodations available");
+                   }
+               }
            }
        }
        return null;
@@ -69,21 +79,7 @@ public class ReservationService  {
        //These are all scanning variables
         Scanner sc= new Scanner(System.in);
         Scanner dateSc = new Scanner(System.in);
-        dateSc.useDelimiter(",");
-        String dateString = dateSc.next();
-        DateFormat formatter= new SimpleDateFormat("dd MM yyyy");
 
-        /* Parse the input since Data doesn't take input natively.
-        The exception thingy was asked by the Date class itself...just left it there in case
-        an error comes up.
-         */
-
-       try {
-           checkInDate = formatter.parse(dateString);
-           checkOutDate = formatter.parse(dateString);
-       } catch (ParseException e) {
-           e.printStackTrace();
-       }
         //Set up the reservation
       // System.out.println("Which customer would you like to add? (type the email): ");
        //customerService.getCustomer("j@d.com");
@@ -111,7 +107,11 @@ public class ReservationService  {
 
 
    public void printAllReservation(){
+       for (Reservation reservation: reservationList
+            ) {
+           System.out.println("Customer "+reservation.getCustomer()+", Room: "+reservation.getRoom()+", Check In date: "+reservation.getCheckInDate()+",Check OUT date: "+reservation.getCheckOutDate());
 
+       }
    }
 
 

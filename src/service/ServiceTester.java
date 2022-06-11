@@ -38,12 +38,12 @@ public class ServiceTester {
         }
 
 
-        System.out.println(CustomerService.CustomerList);
-
+        //System.out.println(CustomerService.CustomerList);
+        CustomerService.getAllCustomers();
 
        //reservationService.addRoom(room1);
            // customerService.getCustomer("j@d.com");
-       reservationService.reserveARoom(customerService.getCustomer("j@d.com"),reservationService.getARoom("123"),newCheckInDate,newCheckOutDate);
+      // reservationService.reserveARoom(customerService.getCustomer("j@d.com"),reservationService.getARoom("123"),newCheckInDate,newCheckOutDate);
     }
 
 }

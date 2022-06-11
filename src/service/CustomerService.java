@@ -47,7 +47,7 @@ public class CustomerService {
              ) {
             System.out.println(customer.getLastName() +","+ customer.getFirstName()+" | email:"+ customer.getEmail());
             System.out.println("--------------");
-
+            return CustomerList;
         }
         return null;
     }
