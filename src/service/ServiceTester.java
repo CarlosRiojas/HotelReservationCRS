@@ -6,6 +6,7 @@ import model.Room;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -21,29 +22,29 @@ public class ServiceTester {
         Scanner sc = new Scanner(System.in);
         Room room1 = new Room();
         IRoom room = new Room();
+        ReservationService reservationService = new ReservationService();
+        Calendar checkIn = Calendar.getInstance();
+        Calendar checkOut = Calendar.getInstance();
 
         Date newCheckInDate = new Date();
         Date newCheckOutDate = new Date();
-        String checkInString = "08 04 2022";
+        String checkInString = "2022,04,05";
         String checkOutString = "08 04 2022";
-        DateFormat formatter= new SimpleDateFormat("dd MM yyyy");
-        ReservationService reservationService = new ReservationService();
 
+        checkIn.set(2022,02,02);
+        checkOut.set(2022,02,06);
 
-        try {
-            newCheckInDate = formatter.parse(checkInString);
-            newCheckOutDate = formatter.parse(checkOutString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+        newCheckInDate = checkIn.getTime();
+        newCheckOutDate = checkOut.getTime();
+        //reservationService.addRoom(room1);
+        customerService.getCustomer("j@d.com");
 
         //System.out.println(CustomerService.CustomerList);
-        CustomerService.getAllCustomers();
+       // CustomerService.getAllCustomers();
 
-       //reservationService.addRoom(room1);
            // customerService.getCustomer("j@d.com");
-      // reservationService.reserveARoom(customerService.getCustomer("j@d.com"),reservationService.getARoom("123"),newCheckInDate,newCheckOutDate);
+        reservationService.addRoom(room1);
+       reservationService.reserveARoom(customerService.getCustomer("j@d.com"),reservationService.getARoom("123"),newCheckInDate,newCheckOutDate);
     }
 
 }

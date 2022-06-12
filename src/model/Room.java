@@ -1,9 +1,12 @@
 package model;
 
+import java.util.Scanner;
+
 public class Room implements IRoom {
     String roomNumber;
     Double price;
     RoomTypeEnum enumartion;
+    Scanner sc = new Scanner(System.in);
 
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
@@ -35,6 +38,7 @@ public class Room implements IRoom {
 
     @Override
     public boolean isFree() {
+        System.out.println("Occupied");
         return false;
     }
 
