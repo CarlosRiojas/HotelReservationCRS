@@ -20,8 +20,15 @@ public class MainMenu {
     Calendar BookCheckIn = Calendar.getInstance();
     Calendar BookCheckOut = Calendar.getInstance();
     IRoom room =new Room();
+    Scanner sc = new Scanner(System.in);
+    Scanner InputString = new Scanner(System.in);
 
-
+    //int yearInt = sc.nextInt();
+    //int monthInt = sc.nextInt();
+    //int dayInt = sc.nextInt();
+    //int resYearInt = sc.nextInt();
+    //int resMonthInt = sc.nextInt();
+   // int resDayInt = sc.nextInt();
 
 
     public void mainMenu(){
@@ -40,26 +47,15 @@ public class MainMenu {
             Scanner sc = new Scanner(System.in);
             Scanner InputString = new Scanner(System.in);
 
-            int selection = sc.nextInt();
-            int yearInt = sc.nextInt();
-            int monthInt = sc.nextInt();
-            int dayInt = sc.nextInt();
-
             String emailInput;
-            String findAroom = InputString.nextLine();
 
             IRoom roomInput = new Room();
-            int resYearInt = sc.nextInt();
-            int resMonthInt = sc.nextInt();
-            int resDayInt = sc.nextInt();
-
-
-            switch(selection){
+            //int selection = sc.nextInt();
+            switch(sc.nextInt()){
                 case 1:
-
-
                     System.out.println("*---------Find a Room-------------*");
-                    hotelResource.getRoom(findAroom);
+                    System.out.println("*---------Enter a room number-------------*");
+                    hotelResource.getRoom(InputString.nextLine());
 
                     System.out.println("*---------Reserve a Room-------------*");
                     System.out.println("Please add customer's E-mail: ");
@@ -70,11 +66,12 @@ public class MainMenu {
                     roomInput.getRoomNumber().equals(InputString.nextLine());
 
                     System.out.println("Please add desired Check OUT date(YYYY MM DD): ");
-                    BookCheckIn.set(resYearInt,resMonthInt,resDayInt);
+                    //BookCheckIn.set(resYearInt,resMonthInt,resDayInt);
+                    BookCheckIn.set(sc.nextInt(),sc.nextInt(),sc.nextInt());
                     Date resCheckOutDate = BookCheckOut.getTime();
 
                     System.out.println("Please add desired Check In date(YYYY MM DD): ");
-                    BookCheckIn.set(resYearInt,resMonthInt,resDayInt);
+                    BookCheckIn.set(sc.nextInt(),sc.nextInt(),sc.nextInt());
                     Date resCheckInDate = BookCheckIn.getTime();
 
                     hotelResource.bookARoom(emailInput,roomInput,resCheckOutDate,resCheckInDate);
@@ -82,12 +79,12 @@ public class MainMenu {
                 case 2:
                     System.out.println("*---------All Reservations-------------*");
                     System.out.println("Add check IN date(YYYY MM DD): ");
-                    CheckIncalendar.set(yearInt,monthInt,dayInt);
+                    CheckIncalendar.set(sc.nextInt(),sc.nextInt(),sc.nextInt());
                     Date CheckInDate = CheckIncalendar.getTime();
 
                     System.out.println("*---------------------------------*");
                     System.out.println("Add check OUT date(YYYY MM DD): ");
-                    CheckOutcalendar.set(yearInt, monthInt, dayInt);
+                    CheckOutcalendar.set(sc.nextInt(), sc.nextInt(), sc.nextInt());
                     Date CheckOutDate = CheckOutcalendar.getTime();
                     hotelResource.getCustomersReservations(CheckInDate,CheckOutDate);
 

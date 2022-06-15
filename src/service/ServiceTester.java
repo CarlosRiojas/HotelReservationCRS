@@ -21,7 +21,7 @@ public class ServiceTester {
 
         Scanner sc = new Scanner(System.in);
         Room room1 = new Room();
-        IRoom room = new Room();
+
         ReservationService reservationService = new ReservationService();
         Calendar checkIn = Calendar.getInstance();
         Calendar checkOut = Calendar.getInstance();
@@ -44,7 +44,7 @@ public class ServiceTester {
 
            // customerService.getCustomer("j@d.com");
         reservationService.addRoom(room1);
-       reservationService.reserveARoom(customerService.getCustomer("j@d.com"),reservationService.getARoom("123"),newCheckInDate,newCheckOutDate);
+        reservationService.reserveARoom(customerService.getCustomer("j@d.com"),reservationService.getARoom("123"),newCheckInDate,newCheckOutDate);
     }
 
 }

@@ -13,41 +13,43 @@ public class CustomerService {
     private static String lastName;
 
 
-        static List<Customer> CustomerList = new <Customer>ArrayList();
+        static List<Customer> customerList = new <Customer>ArrayList();
 
     public void addCustomer(String email, String firstName, String lastName){
         Customer custInfo = new Customer(firstName,lastName,email);
         custInfo.setEmail(email);
         custInfo.setFirstName(firstName);
         custInfo.setLastName(lastName);
-        CustomerList.add(custInfo);
+        customerList.add(custInfo);
     }
 
-    public Customer getCustomer(String customerEmail){
+    public Customer getCustomer(String customerEmail) {
+        if (!customerList.isEmpty()) {
+            for (Customer customer : customerList
+            ) {
 
-        for (Customer customer: CustomerList
-             ) {
-
-            System.out.println(customer);
-
-            if(customer.getEmail().equals(customerEmail)){
-                System.out.println(customer.getLastName() +","+ customer.getFirstName()+", email:"+ customer.getEmail());
+                System.out.println(customer.getLastName() + "," + customer.getFirstName() + ", email:" + customer.getEmail());
                 System.out.println("--------------");
                 return customer;
-                 }else{
-                System.out.println("Customer not found");
-               }
             }
 
+        } else {
+            System.out.println("Customer is not there");
+        }
         return null;
     }
 
-    public static Collection<Customer> getAllCustomers() {
-        for (Customer customer: CustomerList
-             ) {
-            System.out.println(customer.getLastName() +","+ customer.getFirstName()+" | email:"+ customer.getEmail());
-            System.out.println("--------------");
-            return CustomerList;
+    public Collection<Customer> getAllCustomers(){
+        if(!customerList.isEmpty()){
+            for (Customer customer: customerList
+            ) {
+                System.out.println(customer.getLastName() +","+ customer.getFirstName()+" | email:"+ customer.getEmail());
+                System.out.println("--------------");
+                return customerList;
+            }
+        }else{
+            System.out.println("There are no customers!");
+            return null;
         }
         return null;
     }

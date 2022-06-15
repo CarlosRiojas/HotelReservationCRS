@@ -97,10 +97,13 @@ public class ReservationService  {
 
 
    public void printAllReservation(){
-       for (Reservation reservation: reservationList
-            ) {
-           System.out.println("Customer "+reservation.getCustomer()+", Room: "+reservation.getRoom()+", Check In date: "+reservation.getCheckInDate()+",Check OUT date: "+reservation.getCheckOutDate());
-
+       if(!reservationList.isEmpty()){
+           for (Reservation reservation: reservationList
+           ) {
+               System.out.println("Customer "+reservation.getCustomer()+", Room: "+reservation.getRoom()+", Check In date: "+reservation.getCheckInDate()+",Check OUT date: "+reservation.getCheckOutDate());
+           }
+       }else{
+           System.out.println("There are NO reservations booked!");
        }
    }
 
