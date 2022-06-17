@@ -12,14 +12,16 @@ public class AdminResource {
     Scanner sc = new Scanner(System.in);
     Reservation reservation;
 
-    Room room2= new Room();
+    IRoom room2= new Room();
 
-    static Collection<Room> roomList = new HashSet<Room>();
+    static Collection<IRoom> roomList = new HashSet<IRoom>();
 
     List<Customer> customerList;
     CustomerService customerService = new CustomerService();
     ReservationService reservationService = new ReservationService();
     List<ReservationService> reservationServiceList = new ArrayList<>();
+
+    List<IRoom> getRoomCollector;
 
     public Customer getCustomer(String email){
 
@@ -31,16 +33,13 @@ public class AdminResource {
     public void addRoom(List<IRoom> rooms){
 
         reservationService.addRoom(room2);
-        reservationServiceList.add(reservationService);
-       rooms.add(reservationService);
-
-
+        System.out.println(reservationService);
+        roomList.add(room2);
+        rooms.add(reservationService.getARoom(String.valueOf(room2)));
 
 
         //ystem.out.println("Add a room number:");
         //((Room) room).setRoomNumber(sc.next());
-
-
 
     }
 
@@ -64,12 +63,12 @@ public class AdminResource {
 
     public Collection<IRoom> getAllRooms(){
 
-       if(roomList.isEmpty()){
+       if(!roomList.isEmpty()){
            System.out.println("---Here are all the Rooms---");
-           for (Room room: roomList
+           for (IRoom room: roomList
                 ) {
                System.out.println(room);
-
+            return roomList;
            }
 
        }else{
