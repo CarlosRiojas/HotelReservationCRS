@@ -4,16 +4,19 @@ import api.AdminResource;
 import model.IRoom;
 import model.Room;
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class AdminMenu {
-
+    IRoom room;
+    Room roomPara= new Room();
+    List<IRoom> roomList = new ArrayList<>();
+    List<Room>roomAdd;
     public void adminMenu() {
+
         AdminResource adminResource = new AdminResource();
         MainMenu mainMenu = new MainMenu();
-        Room roomInsert = new Room();
-        List<IRoom> roomList;
+
+
         Scanner sc = new Scanner(System.in);
         boolean quit = false;
 
@@ -44,21 +47,24 @@ public class AdminMenu {
                     adminResource.displayAllReservations();
                     adminMenu();
                 case 4:
-                    int selectIn= sc.nextInt();
-                    System.out.println("---Add a Room---");
-                    do{
+
                         System.out.println("----Would you like to add a room?----");
                         System.out.println("1.-Yes 2.-No(go back to admin menu: ");
-                        switch (selectIn){
-                            case 1:
-                                adminResource.addRoom((List<IRoom>) roomInsert);
-                            case 2:
-                                adminMenu();
-                        }
-                    }while(selectIn != 2);
+                    while(!quit){
+                    switch (sc.nextInt()){
+                        case 1:
+                            adminResource.addRoom(roomList);
+
+
+                        case 2:
+                            adminMenu();
+                    }
+                }
 
                 case 5:
                     mainMenu.mainMenu();
+                    case 6:
+                        System.out.println("!quit");
                 default:
                     break;
 

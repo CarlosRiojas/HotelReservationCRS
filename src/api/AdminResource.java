@@ -4,24 +4,22 @@ import model.*;
 import service.CustomerService;
 import service.ReservationService;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class AdminResource {
     Customer customer;
     Scanner sc = new Scanner(System.in);
     Reservation reservation;
-    IRoom room;
 
-    Collection<Room> roomList = new HashSet<Room>();
+    Room room2= new Room();
+
+    static Collection<Room> roomList = new HashSet<Room>();
 
     List<Customer> customerList;
     CustomerService customerService = new CustomerService();
     ReservationService reservationService = new ReservationService();
-
+    List<ReservationService> reservationServiceList = new ArrayList<>();
 
     public Customer getCustomer(String email){
 
@@ -32,14 +30,17 @@ public class AdminResource {
 
     public void addRoom(List<IRoom> rooms){
 
-        System.out.println("Add a room number:");
-        //(rooms).setRoomNumber(sc.next());
-        System.out.println("Add " + (room.getRoomNumber() + " price:"));
-        ((Room) room).setPrice(sc.nextDouble());
-        System.out.println("Add an Room TYPE type(1.Single,2.Double):");
-        ((Room) room).setEnumartion(setEnumeration(sc.next()));
-        rooms.add(room);
-        System.out.println(room + " room added");
+        reservationService.addRoom(room2);
+        reservationServiceList.add(reservationService);
+       rooms.add(reservationService);
+
+
+
+
+        //ystem.out.println("Add a room number:");
+        //((Room) room).setRoomNumber(sc.next());
+
+
 
     }
 
@@ -63,13 +64,12 @@ public class AdminResource {
 
     public Collection<IRoom> getAllRooms(){
 
-       if(!roomList.isEmpty()){
+       if(roomList.isEmpty()){
            System.out.println("---Here are all the Rooms---");
            for (Room room: roomList
                 ) {
-
                System.out.println(room);
-               return (Collection<IRoom>) room;
+
            }
 
        }else{

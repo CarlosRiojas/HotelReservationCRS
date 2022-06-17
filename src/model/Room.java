@@ -23,6 +23,7 @@ public class Room implements IRoom {
 
     @Override
     public String getRoomNumber() {
+        setRoomNumber(roomNumber);
         return roomNumber;
     }
 

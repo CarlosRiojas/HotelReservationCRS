@@ -7,7 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class ReservationService  {
+public class ReservationService implements IRoom {
     Room newRoom = new Room();
     Scanner sc = new Scanner(System.in);
     CustomerService customerService = new CustomerService();
@@ -16,17 +16,20 @@ public class ReservationService  {
 
     Collection<Room> roomList = new HashSet<Room>();
     Collection<Reservation> reservationList = new HashSet<>();
-
+    Collection<IRoom> roomToAdd = new HashSet<>();
 
    public void addRoom(IRoom room) {
+
        System.out.println("Add a room number:");
        ((Room) room).setRoomNumber(sc.next());
-       System.out.println("Add " + (room.getRoomNumber() + " price:"));
+       System.out.println("Add price: ");
        ((Room) room).setPrice(sc.nextDouble());
        System.out.println("Add an Room TYPE type(1.Single,2.Double):");
        ((Room) room).setEnumartion(setEnumeration(sc.next()));
        roomList.add((Room) room);
        System.out.println(room + " room added");
+
+
    }
 
     public RoomTypeEnum setEnumeration(String roomType){
@@ -108,4 +111,26 @@ public class ReservationService  {
    }
 
 
+    @Override
+    public String getRoomNumber() {
+       newRoom.setRoomNumber(sc.nextLine());
+        return null;
+    }
+
+    @Override
+    public Double getRoomPrice() {
+       newRoom.setPrice(sc.nextDouble());
+        return null;
+    }
+
+    @Override
+    public RoomTypeEnum getRoomType() {
+       newRoom.setEnumartion(setEnumeration(sc.next()));
+        return null;
+    }
+
+    @Override
+    public boolean isFree() {
+        return false;
+    }
 }
