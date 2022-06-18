@@ -15,22 +15,26 @@ public class CustomerService {
 
         static List<Customer> customerList = new <Customer>ArrayList();
 
+
     public void addCustomer(String email, String firstName, String lastName){
-        Customer custInfo = new Customer(firstName,lastName,email);
+        Customer custInfo = new Customer(lastName,firstName,email);
         custInfo.setEmail(email);
         custInfo.setFirstName(firstName);
         custInfo.setLastName(lastName);
         customerList.add(custInfo);
+        System.out.println(customerList);
     }
 
     public Customer getCustomer(String customerEmail) {
+
         if (!customerList.isEmpty()) {
             for (Customer customer : customerList
             ) {
 
-                System.out.println(customer.getLastName() + "," + customer.getFirstName() + ", email:" + customer.getEmail());
-                System.out.println("--------------");
-                return customer;
+                    System.out.println(customer.getLastName() + "," + customer.getFirstName() + ", email:" + customer.getEmail());
+                    System.out.println("--------------");
+                    return customer;
+
             }
 
         } else {

@@ -55,7 +55,6 @@ public class AdminMenu {
                         case 1:
                             adminResource.addRoom(roomList);
 
-
                         case 2:
                             adminMenu();
                     }

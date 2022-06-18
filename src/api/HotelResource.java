@@ -10,7 +10,7 @@ import java.util.*;
 
 public class HotelResource  {
     Reservation reservation;
-    CustomerService customerService;
+    CustomerService customerService = new CustomerService();
     Calendar calendar = Calendar.getInstance();
     Date date= new Date();
 

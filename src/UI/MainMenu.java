@@ -1,19 +1,21 @@
 package UI;
 
 
+import api.AdminResource;
 import api.HotelResource;
+import model.Customer;
 import model.IRoom;
 import model.Room;
+import service.CustomerService;
+import service.ReservationService;
 
 import java.nio.channels.SelectableChannel;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class MainMenu {
 
     AdminMenu ToAdminMenu = new AdminMenu();
-    HotelResource hotelResource = new HotelResource();
+
     Date date = new Date();
     Calendar CheckIncalendar = Calendar.getInstance();
     Calendar CheckOutcalendar = Calendar.getInstance();
@@ -22,6 +24,11 @@ public class MainMenu {
     IRoom room =new Room();
     Scanner sc = new Scanner(System.in);
     Scanner InputString = new Scanner(System.in);
+    List<Customer> CustomerList = new ArrayList<>();
+    CustomerService customerService = new CustomerService();
+    ReservationService reservationService = new ReservationService();
+    AdminResource adminResource = new AdminResource();
+    HotelResource hotelResource = new HotelResource();
 
     //int yearInt = sc.nextInt();
     //int monthInt = sc.nextInt();
@@ -34,6 +41,7 @@ public class MainMenu {
     public void mainMenu(){
 
         boolean quit = false;
+
         while(!quit) {
             System.out.println("*---------BW Master Booker------------*");
             System.out.println("*--------------Welcome!-------------*");
@@ -50,20 +58,31 @@ public class MainMenu {
             String emailInput;
 
             IRoom roomInput = new Room();
+
             //int selection = sc.nextInt();
             switch(sc.nextInt()){
                 case 1:
+
                     System.out.println("*---------Find a Room-------------*");
                     System.out.println("*---------Enter a room number-------------*");
                     hotelResource.getRoom(InputString.nextLine());
+
 
                     System.out.println("*---------Reserve a Room-------------*");
                     System.out.println("Please add customer's E-mail: ");
                     emailInput = InputString.nextLine();
 
+                    if(!CustomerList.isEmpty()){
+                        CustomerList.add(hotelResource.getCustomer(emailInput));
+                    }else{
+                        System.out.println("Please add the customer(Email,firstname,lastname:");
+                        hotelResource.createACustomer(InputString.nextLine(),InputString.nextLine(),InputString.nextLine());
+                    }
 
                     System.out.println("Please add desired room: ");
-                    roomInput.getRoomNumber().equals(InputString.nextLine());
+                        adminResource.getAllRooms();
+                    System.out.println("Which room would you like to add: ");
+                         roomInput= hotelResource.getRoom(InputString.nextLine());
 
                     System.out.println("Please add desired Check OUT date(YYYY MM DD): ");
                     //BookCheckIn.set(resYearInt,resMonthInt,resDayInt);
@@ -75,7 +94,7 @@ public class MainMenu {
                     Date resCheckInDate = BookCheckIn.getTime();
 
                     hotelResource.bookARoom(emailInput,roomInput,resCheckOutDate,resCheckInDate);
-
+                    mainMenu();
                 case 2:
                     System.out.println("*---------All Reservations-------------*");
                     System.out.println("Add check IN date(YYYY MM DD): ");
@@ -87,7 +106,7 @@ public class MainMenu {
                     CheckOutcalendar.set(sc.nextInt(), sc.nextInt(), sc.nextInt());
                     Date CheckOutDate = CheckOutcalendar.getTime();
                     hotelResource.getCustomersReservations(CheckInDate,CheckOutDate);
-
+                    mainMenu();
                 case 3:
                     ToAdminMenu.adminMenu();
                 case 4:
