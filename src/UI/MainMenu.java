@@ -101,10 +101,12 @@ public class MainMenu {
                     CheckIncalendar.set(sc.nextInt(),sc.nextInt(),sc.nextInt());
                     Date CheckInDate = CheckIncalendar.getTime();
 
+
                     System.out.println("*---------------------------------*");
                     System.out.println("Add check OUT date(YYYY MM DD): ");
                     CheckOutcalendar.set(sc.nextInt(), sc.nextInt(), sc.nextInt());
                     Date CheckOutDate = CheckOutcalendar.getTime();
+
                     hotelResource.getCustomersReservations(CheckInDate,CheckOutDate);
                     mainMenu();
                 case 3:
