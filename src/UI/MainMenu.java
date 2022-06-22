@@ -6,36 +6,25 @@ import api.HotelResource;
 import model.Customer;
 import model.IRoom;
 import model.Room;
-import service.CustomerService;
-import service.ReservationService;
 
-import java.nio.channels.SelectableChannel;
 import java.util.*;
 
+/*
+Here's the main menu, as you can see differently from Admin menu, there are more switchers here
+due to the fact that it wasn't clear what it was supposed to be asked in some of the options.
+ */
 public class MainMenu {
 
     AdminMenu ToAdminMenu = new AdminMenu();
 
-    Date date = new Date();
     Calendar CheckIncalendar = Calendar.getInstance();
     Calendar CheckOutcalendar = Calendar.getInstance();
     Calendar BookCheckIn = Calendar.getInstance();
     Calendar BookCheckOut = Calendar.getInstance();
-    IRoom room =new Room();
-    Scanner sc = new Scanner(System.in);
-    Scanner InputString = new Scanner(System.in);
     List<Customer> CustomerList = new ArrayList<>();
-    CustomerService customerService = new CustomerService();
-    ReservationService reservationService = new ReservationService();
+
     AdminResource adminResource = new AdminResource();
     HotelResource hotelResource = new HotelResource();
-
-    //int yearInt = sc.nextInt();
-    //int monthInt = sc.nextInt();
-    //int dayInt = sc.nextInt();
-    //int resYearInt = sc.nextInt();
-    //int resMonthInt = sc.nextInt();
-   // int resDayInt = sc.nextInt();
 
 
     public void mainMenu(){
@@ -48,7 +37,8 @@ public class MainMenu {
             System.out.println("1.- Find and reserve a room");
             System.out.println("2.- See my reservations");
             System.out.println("3.- Admin menu");
-            System.out.println("4.- Quit app");
+            System.out.println("4-  Create an Account");
+            System.out.println("5-  Quit");
             System.out.println("");
             System.out.println("*-------Type IN your option below:-----*");
 
@@ -101,6 +91,10 @@ public class MainMenu {
                     CheckIncalendar.set(sc.nextInt(),sc.nextInt(),sc.nextInt());
                     Date CheckInDate = CheckIncalendar.getTime();
 
+                    /*I had no clue how
+                      to make format better in the input phase, at least not bothering
+                     while having to solve bugs.
+                     */
 
                     System.out.println("*---------------------------------*");
                     System.out.println("Add check OUT date(YYYY MM DD): ");
@@ -112,8 +106,23 @@ public class MainMenu {
                 case 3:
                     ToAdminMenu.adminMenu();
                 case 4:
-                    break;
+                    System.out.println("*---------------------------------*");
+                    System.out.println("*-----Create an Account------------");
 
+
+                    System.out.println("*-----please add an email------------");
+                    String email=sc.next();
+
+                    System.out.println("*-----please add an First Name------------");
+                    String firstName=sc.next();
+
+                    System.out.println("*-----please add an Last Name------------");
+                    String lastName=sc.next();
+
+                    hotelResource.createACustomer(email,firstName,lastName);
+                    mainMenu();
+                case 5:
+                    break;
             }
 
 

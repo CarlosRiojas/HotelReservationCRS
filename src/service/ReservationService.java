@@ -76,18 +76,15 @@ public class ReservationService implements IRoom {
         Scanner sc= new Scanner(System.in);
         Scanner dateSc = new Scanner(System.in);
 
-        //Set up the reservation
-      // System.out.println("Which customer would you like to add? (type the email): ");
-       //customerService.getCustomer("j@d.com");
+
       newReservation.setCustomer(customer);
 
-       // System.out.println("And in which room will you be accommodating him/her?: ");
-        //newReservation.setRoom(getARoom(sc.nextLine()));
+
        newReservation.setRoom(room);
-       //System.out.println("When will the customer be CHECKING IN?: ");
+
         newReservation.setCheckInDate(checkInDate);//dateString already asks for input
 
-      // System.out.println("When will the customer be CHECKING OUT?: ");
+
        newReservation.setCheckOutDate(checkOutDate);//dateString already asks for input
 
         reservationList.add(newReservation);

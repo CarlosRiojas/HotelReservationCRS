@@ -16,12 +16,12 @@ public class AdminResource {
 
     static Collection<IRoom> roomList = new HashSet<IRoom>();
 
-    List<Customer> customerList;
+
     CustomerService customerService = new CustomerService();
     ReservationService reservationService = new ReservationService();
-    List<ReservationService> reservationServiceList = new ArrayList<>();
 
-    List<IRoom> getRoomCollector;
+
+
 
     public Customer getCustomer(String email){
 

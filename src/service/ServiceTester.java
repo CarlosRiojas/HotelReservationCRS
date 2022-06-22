@@ -16,9 +16,6 @@ public class ServiceTester {
         customerService.addCustomer("j@d.com","Jad","Rad");
 
 
-        //System.out.println(customerService.getCustomer("j@d.com"));
-        //System.out.println(customerService.getAllCustomers());
-
         Scanner sc = new Scanner(System.in);
         Room room1 = new Room();
 
