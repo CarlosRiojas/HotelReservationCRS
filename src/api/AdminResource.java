@@ -17,7 +17,7 @@ public class AdminResource {
     static Collection<IRoom> roomList = new HashSet<IRoom>();
 
 
-    CustomerService customerService = new CustomerService();
+    static CustomerService customerService = new CustomerService();
     ReservationService reservationService = new ReservationService();
 
 

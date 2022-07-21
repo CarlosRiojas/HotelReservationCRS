@@ -7,14 +7,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+
 public class CustomerService {
-    private static String email;
-    private static String firstName;
-    private static String lastName;
 
-
-        static List<Customer> customerList = new <Customer>ArrayList();
-
+       static List<Customer> customerList = new <Customer>ArrayList();
 
     public void addCustomer(String email, String firstName, String lastName){
         Customer custInfo = new Customer(lastName,firstName,email);
@@ -45,11 +41,11 @@ public class CustomerService {
 
     public Collection<Customer> getAllCustomers(){
         if(!customerList.isEmpty()){
-            for (Customer customer: customerList
+            for (Customer customer: CustomerService.customerList
             ) {
                 System.out.println(customer.getLastName() +","+ customer.getFirstName()+" | email:"+ customer.getEmail());
                 System.out.println("--------------");
-                return customerList;
+                return CustomerService.customerList;
             }
         }else{
             System.out.println("There are no customers!");

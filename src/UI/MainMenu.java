@@ -6,6 +6,7 @@ import api.HotelResource;
 import model.Customer;
 import model.IRoom;
 import model.Room;
+import service.CustomerService;
 
 import java.util.*;
 
@@ -21,7 +22,7 @@ public class MainMenu {
     Calendar CheckOutcalendar = Calendar.getInstance();
     Calendar BookCheckIn = Calendar.getInstance();
     Calendar BookCheckOut = Calendar.getInstance();
-    List<Customer> CustomerList = new ArrayList<>();
+    List<Customer> customerList = new ArrayList<>();
 
     AdminResource adminResource = new AdminResource();
     HotelResource hotelResource = new HotelResource();
@@ -62,13 +63,14 @@ public class MainMenu {
                     System.out.println("Please add customer's E-mail: ");
                     emailInput = InputString.nextLine();
 
-                    if(!CustomerList.isEmpty()){
-                        CustomerList.add(hotelResource.getCustomer(emailInput));
-                    }else{
-                        System.out.println("Please add the customer(Email,firstname,lastname:");
-                        hotelResource.createACustomer(InputString.nextLine(),InputString.nextLine(),InputString.nextLine());
-                    }
-
+                        for(Customer customer: adminResource.getAllCustomers()) {
+                            if (adminResource.getAllCustomers().contains(customer.getEmail().equals(emailInput))) {
+                                System.out.println(customer + "identified");
+                            } else {
+                                System.out.println("Please add the customer(Email,firstname,lastname:");
+                                hotelResource.createACustomer(InputString.nextLine(), InputString.nextLine(), InputString.nextLine());
+                            }
+                        }
                     System.out.println("Please add desired room: ");
                         adminResource.getAllRooms();
                     System.out.println("Which room would you like to add: ");
@@ -120,6 +122,7 @@ public class MainMenu {
                     String lastName=sc.next();
 
                     hotelResource.createACustomer(email,firstName,lastName);
+
                     mainMenu();
                 case 5:
                     break;
