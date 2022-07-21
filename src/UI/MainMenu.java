@@ -61,32 +61,40 @@ public class MainMenu {
 
                     System.out.println("*---------Reserve a Room-------------*");
                     System.out.println("Please add customer's E-mail: ");
-                    emailInput = InputString.nextLine();
+                    emailInput = sc.next();
 
-                        for(Customer customer: adminResource.getAllCustomers()) {
-                            if (adminResource.getAllCustomers().contains(customer.getEmail().equals(emailInput))) {
-                                System.out.println(customer + "identified");
+
+                            if (!adminResource.getAllCustomers().isEmpty()) {
+                                System.out.println("there are customers");
+                                for(Customer customer: adminResource.getAllCustomers()) {
+                                    if(customer.getEmail().contains(emailInput)) {
+                                        System.out.println(customer + " identified");
+
+                                        //continue the booking process
+                                        System.out.println("Please add desired room: ");
+                                        adminResource.getAllRooms();
+                                        System.out.println("Which room would you like to add: ");
+                                        roomInput = hotelResource.getRoom(InputString.nextLine());
+
+                                        System.out.println("Please add desired Check OUT date(YYYY MM DD): ");
+                                        //BookCheckIn.set(resYearInt,resMonthInt,resDayInt);
+                                        BookCheckIn.set(sc.nextInt(), sc.nextInt(), sc.nextInt());
+                                        Date resCheckOutDate = BookCheckOut.getTime();
+
+                                        System.out.println("Please add desired Check In date(YYYY MM DD): ");
+                                        BookCheckIn.set(sc.nextInt(), sc.nextInt(), sc.nextInt());
+                                        Date resCheckInDate = BookCheckIn.getTime();
+
+                                        System.out.println(hotelResource.bookARoom(emailInput, roomInput, resCheckOutDate, resCheckInDate));
+
+                                        mainMenu();
+                                        }
+                                    }
                             } else {
-                                System.out.println("Please add the customer(Email,firstname,lastname:");
-                                hotelResource.createACustomer(InputString.nextLine(), InputString.nextLine(), InputString.nextLine());
-                            }
-                        }
-                    System.out.println("Please add desired room: ");
-                        adminResource.getAllRooms();
-                    System.out.println("Which room would you like to add: ");
-                         roomInput= hotelResource.getRoom(InputString.nextLine());
+                                System.out.println("There is no customer with that email");
+                                mainMenu();
+                    }
 
-                    System.out.println("Please add desired Check OUT date(YYYY MM DD): ");
-                    //BookCheckIn.set(resYearInt,resMonthInt,resDayInt);
-                    BookCheckIn.set(sc.nextInt(),sc.nextInt(),sc.nextInt());
-                    Date resCheckOutDate = BookCheckOut.getTime();
-
-                    System.out.println("Please add desired Check In date(YYYY MM DD): ");
-                    BookCheckIn.set(sc.nextInt(),sc.nextInt(),sc.nextInt());
-                    Date resCheckInDate = BookCheckIn.getTime();
-
-                    hotelResource.bookARoom(emailInput,roomInput,resCheckOutDate,resCheckInDate);
-                    mainMenu();
                 case 2:
                     System.out.println("*---------All Reservations-------------*");
                     System.out.println("Add check IN date(YYYY MM DD): ");

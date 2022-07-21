@@ -26,11 +26,9 @@ public class CustomerService {
         if (!customerList.isEmpty()) {
             for (Customer customer : customerList
             ) {
-
-                    System.out.println(customer.getLastName() + "," + customer.getFirstName() + ", email:" + customer.getEmail());
-                    System.out.println("--------------");
-                    return customer;
-
+                System.out.println(customer.getLastName()+","+customer.getFirstName()+", email:" + customer.getEmail());
+                System.out.println("--------------");
+                return customer;
             }
 
         } else {
@@ -41,17 +39,17 @@ public class CustomerService {
 
     public Collection<Customer> getAllCustomers(){
         if(!customerList.isEmpty()){
-            for (Customer customer: CustomerService.customerList
+
+            for(Customer customer: customerList
             ) {
-                System.out.println(customer.getLastName() +","+ customer.getFirstName()+" | email:"+ customer.getEmail());
+                System.out.println(customer.getLastName()+","+customer.getFirstName()+" | email:"+customer.getEmail());
                 System.out.println("--------------");
-                return CustomerService.customerList;
             }
         }else{
             System.out.println("There are no customers!");
             return null;
         }
-        return null;
+        return customerList;
     }
 
 }

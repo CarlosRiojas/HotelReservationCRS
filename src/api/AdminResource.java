@@ -25,9 +25,7 @@ public class AdminResource {
 
     public Customer getCustomer(String email){
 
-        customer = customerService.getCustomer(email);
-
-        return customer;
+        return customerService.getCustomer(email);
     }
 
     public void addRoom(List<IRoom> rooms){
@@ -67,8 +65,7 @@ public class AdminResource {
            System.out.println("---Here are all the Rooms---");
            for (IRoom room: roomList
                 ) {
-               System.out.println(room);
-            return roomList;
+               System.out.println("Room number: "+room.getRoomNumber()+" | Price: $"+room.getRoomPrice()+" USD"+" | Type:"+room.getRoomType());
            }
 
        }else{

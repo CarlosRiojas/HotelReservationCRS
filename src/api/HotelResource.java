@@ -39,10 +39,9 @@ public class HotelResource  {
         for (Reservation reservationPnt: reservationList
              ) {
             for(Date date = checkIn;date.after(checkIn);date = checkOut){
-                System.out.println(reservationPnt);
+                System.out.println(reservationPnt.getCustomer()+""+reservationPnt.getRoom());
             }
-            System.out.println(reservationPnt);
-            return reservationList;
+            System.out.println(reservationPnt.getRoom());
         }
 
         return null;

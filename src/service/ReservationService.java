@@ -53,7 +53,7 @@ public class ReservationService implements IRoom {
        for (Room room: roomList
             ) {
            if(room.getRoomNumber().equals(roomId) || !room.isFree()){
-               return room;
+               System.out.println("Room number: "+room.getRoomNumber()+" | Price: $"+room.getRoomPrice()+" USD"+" | Type:"+room.getRoomType());
            }else{
                System.out.println("Room not found");
                for (Room allRoom: roomList
@@ -76,19 +76,16 @@ public class ReservationService implements IRoom {
         Scanner sc= new Scanner(System.in);
         Scanner dateSc = new Scanner(System.in);
 
+         newReservation.setCustomer(customer);
 
-      newReservation.setCustomer(customer);
+         newReservation.setRoom(room);
 
+         newReservation.setCheckInDate(checkInDate);//dateString already asks for input
 
-       newReservation.setRoom(room);
+         newReservation.setCheckOutDate(checkOutDate);//dateString already asks for input
 
-        newReservation.setCheckInDate(checkInDate);//dateString already asks for input
-
-
-       newReservation.setCheckOutDate(checkOutDate);//dateString already asks for input
-
-        reservationList.add(newReservation);
-       System.out.println(newReservation);
+         reservationList.add(newReservation);
+         System.out.println(newReservation);
 
 
     return newReservation;
