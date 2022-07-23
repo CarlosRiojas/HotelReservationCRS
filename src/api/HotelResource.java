@@ -40,6 +40,7 @@ public class HotelResource  {
              ) {
             for(Date date = checkIn;date.after(checkIn);date = checkOut){
                 System.out.println(reservationPnt.getCustomer()+""+reservationPnt.getRoom());
+                System.out.println(date);
             }
             System.out.println(reservationPnt.getRoom());
         }

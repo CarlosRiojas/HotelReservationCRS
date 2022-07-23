@@ -85,7 +85,7 @@ public class MainMenu {
                                         BookCheckIn.set(sc.nextInt(), sc.nextInt(), sc.nextInt());
                                         Date resCheckInDate = BookCheckIn.getTime();
 
-                                        System.out.println(hotelResource.bookARoom(emailInput, roomInput, resCheckOutDate, resCheckInDate));
+                                       hotelResource.bookARoom(emailInput, roomInput, resCheckOutDate, resCheckInDate);
 
                                         mainMenu();
                                         }
